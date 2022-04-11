@@ -18,13 +18,13 @@ int main(){
     solution();
     return 0;
 }
-// в solution должно быть что-то, отвечающее только за решение без печатания, и что-то, работающее с печатью отдельно 
+
 void solution(){
-    //define a, b, c here
-    double a, b, c; // init with NAN
+    
+    double a, b, c; 
     check_input(&a,&b,&c);
-    if(check_equation_structure(a,b,c) == 1){ // a == 0 + move all coeff checks to quadratic equation solver
-        if (linear_equation(b,c) == 1){ // one call
+    if(check_equation_structure(a,b,c) == 1){ 
+        if (linear_equation(b,c) == 1){ 
             printf("Any answer is correct\n");
         }
         if (linear_equation(b,c) == 0){
@@ -35,7 +35,7 @@ void solution(){
         }
     }
     else{
-        if(quadratic_equation_check(a, b, c) == 0){ // same
+        if(quadratic_equation_check(a, b, c) == 0){ 
             printf("There's no answer\n");
         }
         if(quadratic_equation_check(a, b, c) == 1){
@@ -48,7 +48,7 @@ void solution(){
     
 }
 void check_input(double * a, double * b, double * c){
-    if (scanf("%lf %lf %lf", a, b, c) < 3){// better status, error in main function
+    if (scanf("%lf %lf %lf", a, b, c) < 3){
         exit(-1);
     }
 }
@@ -60,10 +60,10 @@ int double_comparsion(double x1, double x2){
     if (abs(x1 -x2) < 0.000001){
         return 1;
     }
-    return 0;// shorter
+    return 0;
 }
 
-double linear_equation(double b, double c){ // solve name + return int status & write root to ptr
+double linear_equation(double b, double c){ 
     if (b == 0){
         if (c == 0){
             return 1;
@@ -72,7 +72,7 @@ double linear_equation(double b, double c){ // solve name + return int status & 
             return 0;
         }  
     }
-    if (b != 0){ // no checks
+    if (b != 0){ 
         double x;
         x = -c/b;
         return x;
@@ -80,7 +80,7 @@ double linear_equation(double b, double c){ // solve name + return int status & 
     return 5;
 }
 
-double quadratic_equation_check(double a, double b, double c){ // bad name
+double quadratic_equation_check(double a, double b, double c){ 
     double D = (b*b - 4*a*c);
     if (D < 0){
         return 0;
@@ -90,10 +90,10 @@ double quadratic_equation_check(double a, double b, double c){ // bad name
         double x1 = ((-b +  sqD)/2*a);
         double x2 = ((-b -  sqD)/2*a);
         if (double_comparsion(x1, x2) == 1){
-            return 1; // 1 root
+            return 1; 
         } 
         else {
-            return 2; //2 roots
+            return 2; 
         }
     }
 }
@@ -104,7 +104,7 @@ double one_root(double a, double b, double c){
     double x1 = ((-b +  sqD)/2*a);
     double x2 = ((-b - sqD)/2*a);
     if (double_comparsion(x1, x2) == 1){
-            return x1; // 1 root
+            return x1; 
     }
     return x1;
 }
